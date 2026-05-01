@@ -8,14 +8,14 @@ import Map, {
   type ViewStateChangeEvent,
 } from 'react-map-gl/maplibre';
 import 'maplibre-gl/dist/maplibre-gl.css';
+import type { Map as MaplibreMap, StyleSpecification } from 'maplibre-gl';
 import { BASE_STYLE } from '@/lib/map/styles/base';
-import { debounce } from '@/lib/utils';
 
 interface MapEditorProps {
   initialCenter?: [number, number];
   initialZoom?: number;
-  onMapLoad?: (map: maplibregl.Map) => void;
-  styleOverrides?: Partial<maplibregl.StyleSpecification>;
+  onMapLoad?: (map: MaplibreMap) => void;
+  styleOverrides?: Partial<StyleSpecification>;
 }
 
 export default function MapEditor({
