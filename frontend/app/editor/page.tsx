@@ -1,8 +1,9 @@
 'use client';
 
-import { useState, useCallback, useRef } from 'react';
+import { useState, useCallback } from 'react';
 import dynamic from 'next/dynamic';
-import { Save, Download, Palette, Type, Layers } from 'lucide-react';
+import { Palette, Type, Layers } from 'lucide-react';
+import type { Map as MaplibreMap } from 'maplibre-gl';
 import MapEditor from '@/components/map/MapEditor';
 import StyleSelector from '@/components/controls/StyleSelector';
 import ColorPicker from '@/components/controls/ColorPicker';
@@ -15,10 +16,10 @@ const MapEditorNoSSR = dynamic(() => Promise.resolve(MapEditor), { ssr: false })
 
 export default function EditorPage() {
   const [activePanel, setActivePanel] = useState<'style' | 'colors' | 'typo' | 'layers'>('style');
-  const [mapInstance, setMapInstance] = useState<maplibregl.Map | null>(null);
+  const [mapInstance, setMapInstance] = useState<MaplibreMap | null>(null);
   const [exportProgress, setExportProgress] = useState(0);
   
-  const handleMapLoad = useCallback((map: maplibregl.Map) => {
+  const handleMapLoad = useCallback((map: MaplibreMap) => {
     setMapInstance(map);
   }, []);
 
